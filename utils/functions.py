@@ -18,14 +18,27 @@ def sort_payment(data):
 def data_print(item):
     correct_format = format_date(item.get("date"))
 
+    if item.get("from"):
+        from_ = card_masking(item.get("from")) + ' -> '
+    else:
+        from_ = ''
+
     return f'{correct_format} {item.get("description")}\n' \
-           f'{item.get("from")} => {item.get("to")}\n' \
+           f'{from_}{card_masking(item.get("to"))}\n' \
            f'{item["operationAmount"]["amount"]} {item["operationAmount"]["currency"]["name"]}\n'
 
 
 def format_date(date):
     str_date = date[:10].split('-')
     return '.'.join(reversed(str_date))
+
+
+def card_masking(card):
+    card = card.split(' ')
+    if card[0] == 'Счет':
+        return f'{card[0]} **{card[-1][-4:]}'
+
+    return f'{" ".join(card[:-1])} {card[-1][:4]} {card[-1][4:6]}** **** {card[-1][-4:]} -> '
 
 
 if __name__ == '__main__':
