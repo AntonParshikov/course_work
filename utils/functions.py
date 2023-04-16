@@ -36,9 +36,7 @@ def card_masking(card):
     if card[0] == 'Счет':
         return f'{card[0]} **{card[-1][-4:]}'
 
-    return f'{" ".join(card[:-1])} {card[-1][:4]} {card[-1][4:6]}** **** {card[-1][-4:]} -> '
+    return f'{" ".join(card[:-1])} {card[-1][:4]} {card[-1][4:6]}** **** {card[-1][-4:]}'
 
 
-if __name__ == '__main__':
-    payments_data = load_data()
-    print(sort_payment(payments_data))
+
