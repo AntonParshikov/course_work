@@ -1,4 +1,25 @@
-from utils.functions import sort_payment
+from utils.functions import sort_payment, load_data
+
+
+def test_load_data():
+    list_ = [
+        {
+            "id": 542678139,
+            "state": "EXECUTED",
+            "date": "2018-10-14T22:27:25.205631",
+            "operationAmount": {
+                "amount": "90582.51",
+                "currency": {
+                    "name": "USD",
+                    "code": "USD"
+                }
+            },
+            "description": "Перевод организации",
+            "from": "Visa Platinum 2256483756542539",
+            "to": "Счет 78808375133947439319"
+        }
+    ]
+    assert load_data('test.json') == list_
 
 
 def test_sort_payment():
@@ -35,4 +56,3 @@ def test_sort_payment():
     ]
 
     assert sort_payment(list_) == sorted_list
-

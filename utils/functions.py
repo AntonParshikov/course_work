@@ -1,10 +1,8 @@
 import json
 
-payments_file = 'operations.json'
 
-
-def load_data():
-    with open(payments_file, 'r', encoding='utf-8') as file:
+def load_data(path):
+    with open(path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
